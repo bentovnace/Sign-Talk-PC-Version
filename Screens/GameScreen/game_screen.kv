@@ -1,0 +1,986 @@
+<GameScreen>
+    ScreenManager:
+        id: main_scr
+        Screen:
+            id: game_scr_1
+            name:'game_screen_1'
+            MDFloatLayout:
+                
+                FitImage:
+                    source: 'Background for App-Study.png'
+               
+                MDBoxLayout:
+                    pos_hint: {'center_x': 0.25,'center_y': 0.57}
+                    size_hint_x: .40
+                    size_hint_y: .31
+                    
+                    MDCard:
+                        radius: 20
+                        orientation: 'vertical'
+                        y:'20dp'
+                        elevation:10
+                        ripple_behavior: True
+                        on_press: root.change_E_screen()
+                        Image:
+                            source:'learning.png'
+                            size_hint_x: 2.5
+                            size_hint_y: 2.5
+                        #on_press: root.run_camera()
+                            pos_hint: {'center_x': 0.45,'center_y': 0.5}
+                        MDLabel:
+                            text:'English'
+                            halign:'center'
+                            font_name:'iCiel Crocante.otf'
+                            font_size:'32dp'
+                            theme_text_color: 'Custom'
+                            text_color: '#FFE568'
+                        
+                    
+                MDBoxLayout:
+                    pos_hint: {'center_x': 0.75,'center_y': 0.57}
+                    size_hint_x: .40
+                    size_hint_y: .31
+                    
+                    MDCard:
+                        radius: 20
+                        orientation: 'vertical'
+                        y:'20dp'
+                        elevation:10
+                        ripple_behavior: True
+                        on_press: root.change_bdl_screen()
+                        
+                        Image:
+                            source:'sign lang png.png'
+                            size_hint_x: 2.5
+                            size_hint_y: 2.5
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        MDLabel:
+                            text:'Bodylanguage'
+                            halign: 'center'
+                            font_name:'FingerSpeller W90 RightHand.ttf'
+                            font_size:'16'
+                            theme_text_color: 'Custom'
+                            text_color: '#FFE568'
+
+
+
+
+
+
+
+
+
+        Screen:
+            id: question_1
+            name:'question_1'
+            FitImage:
+                source:'Background for App.png'
+
+
+            MDLabel:
+                id: per_cent
+
+                text:'0%'
+                pos_hint:{'center_x':1.37,'center_y':.92}
+                font_name:"iCiel Alina.otf"
+                font_size:"32sp"
+                theme_text_color: "Custom"
+                text_color:"#01DFF0"
+
+
+            Button:
+                id: back_screen
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.change_E_screen()
+                pos: 20,1250
+                size: 80,80 
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80 
+                
+
+            MDProgressBar:
+                id:progress_bar
+                value: 0
+                pos_hint:{'center_x':.5,'center_y':.92}
+                size_hint_x: .7
+                size_hint_y:3
+                radius:[20,20,20,20]
+                
+           
+
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.75}
+                size_hint_x: .9
+                size_hint_y: .25
+                
+                MDCard:
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'20dp'
+                    elevation:10
+                    
+                    MDLabel:
+                        id: ques_1
+                        text:'Question 1'
+                        font_size:'32sp'
+                        halign:'center'
+                        font_name:'iCiel Brush Up.otf'
+        
+                    
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.44}
+                size_hint_x: .9
+                size_hint_y: .1
+                
+                MDCard:
+                    id: card_a
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'10dp'
+                    elevation:10
+                    on_press: root.answer_A()
+                    
+                    ripple_behavior: True
+                    MDLabel:
+                        id: answer_a
+                        text:'Answer A'
+                        font_size:'20sp'
+                        halign:'center'
+                        font_name:'iCiel Brush Up.otf'
+                       
+                    
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.32}
+                size_hint_x: .9
+                size_hint_y: .1
+                
+                MDCard:
+                    id: card_b
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'10dp'
+                    elevation:10
+                    ripple_behavior: True
+                    on_press: root.answer_B()
+                   
+
+                    
+                    MDLabel:
+                        id: answer_b
+                        text:'Answer B'
+                        font_size:'20sp'
+                        halign:'center'
+                        font_name:'iCiel Brush Up.otf'
+
+
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.20}
+                size_hint_x: .9
+                size_hint_y: .1
+                
+                MDCard:
+                    id: card_c
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'10dp'
+                    elevation:10
+                    ripple_behavior: True
+                    on_press: root.answer_C()
+                    
+
+                    
+                    MDLabel:
+                        id: answer_c
+                        text:'Answer C'
+                        font_size:'20sp'
+                        halign:'center'
+                        font_name:'iCiel Brush Up.otf'
+
+            MDBoxLayout:
+
+                pos_hint: {'center_x': 0.5,'center_y': 0.08}
+                size_hint_x: .9
+                size_hint_y: .1
+                
+                MDCard:
+                    id: card_d
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'10dp'
+                    elevation:10
+                    ripple_behavior: True
+                    on_press: root.answer_D()
+                    
+                            
+                    MDLabel:
+                        id: answer_d
+                        text:'Answer D'
+                        font_size:'20sp'
+                        halign:'center'
+                        font_name:'iCiel Brush Up.otf'
+
+
+
+
+
+
+        Screen:
+            id: final_score
+            name: "final_score"
+            FitImage:
+                source:'Background for end game.png'
+            
+
+            MDFillRoundFlatButton:
+                text:'Come Back'
+                halign: 'center'
+                pos_hint:{'center_x':.5, 'center_y':.15}
+
+                font_name:"iCiel Alina.otf"
+                font_size:'24sp'
+                on_press: root.change_E_screen()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        Screen:
+
+            id: game_scr_2                    
+            name: 'game_screen_2'
+            
+            FitImage:
+                source:'Background for App ELish.png'
+
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.game_back_1()
+                pos: 20,1250
+                size: 80,80 
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80 
+            
+            MDCard:
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    
+                size_hint_x: .85
+                size_hint_y: .7 
+                radius: 20
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:2
+                        spacing:'20dp'
+                        padding: '20dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.chao_hoi()
+                            on_press:root.change_question()
+                            
+                            Image:
+                                source:'Hello-cuate.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Chào hỏi'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FFE568'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.chao_hoi_2()
+                            on_press: root.change_question()
+                            Image:
+                                source:'Hello-bro.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Giới Thiệu'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#6DA783'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.chao_hoi_3()
+                            on_press: root.change_question()
+                            
+                            Image:
+                                source:'Happy-Family-Vector-PNG-HD.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Gia đình'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#246AFC'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release:root.chao_hoi_4()
+                            on_press:root.change_question()
+                            
+                            Image:
+                                source:'World Humanitarian Day-pana.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Xã hội'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#455A64'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_5()
+                            Image:
+                                source:'Ecommerce web page-amico.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Mua sắm'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#E0BBE6'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_6()
+                            Image:
+                                source:'Coffee shop-amico.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Nhà hàng'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#C886D3'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_7()
+                            Image:
+                                source:'Knowledge-rafiki.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Học tập'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#407BFF'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_8()
+                            Image:
+                                source:'Grand slam-pana.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Thể thao'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FF725E'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_9()
+                            Image:
+                                source:'Travel I.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Du lịch'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#C4F4F5'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_10()
+                            Image:
+                                source:'WORK.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Nghề nghiệp'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#2B2F78'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_11()
+                            Image:
+                                source:'color.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Màu sắc'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FDC1C9'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press: root.change_question()
+                            on_release: root.chao_hoi_12()
+                            Image:
+                                source:'City driver-cuate.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Phương tiện'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FFE568'
+
+
+
+
+
+
+
+
+        Screen:
+            id: game_scr_3                    
+            name: 'game_screen_3'
+            FitImage:
+                source:'Background for App-Bodylang.png'
+
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.game_back_1()
+                pos: 20,1250
+                size: 80,80 
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80 
+           
+            MDCard:
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    
+                size_hint_x: .85
+                size_hint_y: .7 
+                radius: 20
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:2
+                        spacing:'20dp'
+                        padding: '20dp'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release:root.chao_hoi_13()                           
+                            Image:
+                                source:'@ABC.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'ABC'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#F78F8F'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_14()
+                            Image:
+                                source:'@bdlang.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Sign'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#282C34'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi()
+                            Image:
+                                source:'Hello-cuate.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Greeting'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FFE568'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_2()
+                            Image:
+                                source:'Hello-bro.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Introduce'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#6DA783'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_3()
+                            Image:
+                                source:'Happy-Family-Vector-PNG-HD.png'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Family'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#246AFC'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_4()
+                            Image:
+                                source:'World Humanitarian Day-pana.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Society'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#455A64'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_5()
+                            Image:
+                                source:'Ecommerce web page-amico.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Shopping'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#E0BBE6'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_6()
+                            Image:
+                                source:'Coffee shop-amico.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Restaurant'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#C886D3'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_7()
+                            Image:
+                                source:'Knowledge-rafiki.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Study'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#407BFF'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_8()
+                            Image:
+                                source:'Grand slam-pana.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Sport'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FF725E'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_9()
+                            Image:
+                                source:'Travel I.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Travel'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#C4F4F5'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_10()
+                            Image:
+                                source:'WORK.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Career'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#2B2F78'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_11()
+                            Image:
+                                source:'color.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Color'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FDC1C9'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_press:root.change_question()
+                            on_release: root.chao_hoi_12()
+                            Image:
+                                source:'City driver-cuate.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Transport'
+                                halign: 'center'
+                                font_name:'FingerSpeller W90 RightHand.ttf'
+                                font_size:'16dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FFE568'
+
+
+<CustomBottomSheet_pro@BoxLayout>:
+    
+        
+    orientation:'vertical'
+    size_hint_y: None
+    height:'150dp'
+    radius: [30,30,0,0]
+    elevation:10
+   
+    MDFloatLayout:
+        orientation:'vertical'
+        FitImage:
+            source:'pro image.jpg'
+
+       
+    
+
+        MDFillRoundFlatButton:
+            id:continue_button
+            text:'Tiếp tục nào !'
+            halign: 'center'
+            pos_hint:{'center_x':.5, 'center_y':.5}
+
+            font_name:"iCiel Alina.otf"
+            font_size:'30sp'
+          
+
+            radius:[23,23,23,23]
+            
+            
+
+
+
+    
+
+        

@@ -1,0 +1,202 @@
+<TranslateScreen>
+    id:translatescreen
+    name:'translatescreen'
+    textinput: textinput
+    textoutput: textoutput
+    fristvalue: firstvalue
+    secondvalue: secondvalue
+    
+    ScreenManager:
+    	id:main
+		    	
+    	Screen:
+    		name:'scr_1'
+			id: 'screen1'
+		    FitImage:
+		        source:'Translate_bg.png'    
+		
+		    
+		    MDBoxLayout:
+		        pos_hint: {'center_x': 0.5,'center_y': 0.64}
+		
+		        size_hint_x: .85
+		        size_hint_y: .31
+		
+		        
+		               
+		        MDCard:
+		            
+		
+		            radius: 20
+		            orientation: 'vertical'
+		            y:'-300dp'
+		            
+		            MDTextField:
+		                id: textinput
+		                size_hint_x: .8
+		                size_hint_y: .78
+		                hint_text: "Văn Bản"
+		                font_name_hint_text:'iCielBCDowntown-Regular.otf'
+		                font_size:'24sp'
+		                font_name:'Cucho.otf'                             
+		                multiline: True 
+		                pos_hint: {"center_x": .5, "top": .6}
+		                
+		
+		    MDBoxLayout:
+		        pos_hint: {'center_x': 0.5,'center_y': 0.23}
+		
+		        size_hint_x: .85
+		        size_hint_y: .31
+		        MDCard:
+					id: output_box
+		            radius: 20
+		            orientation: 'vertical'
+		            y:'-300dp'
+		
+		            MDTextField:
+		                id: textoutput
+		                size_hint_y: .78
+		                size_hint_x: .8
+		                hint_text: "Dịch"
+		                font_size:'24sp'
+		                
+		
+		                font_name_hint_text:'iCielBCDowntown-Regular.otf'
+		                font_name:'Cucho.otf'
+		                
+		                
+		                multiline: True
+		                pos_hint: {"center_x": .5, "top": .6}
+
+		
+		
+		    MDIconButton:
+				id:speech
+		        icon:'account-tie-voice'
+		               
+		        pos_hint: {'center_x': 0.65,'center_y': 0.46}
+		
+		        on_release: root.speech_recognition()
+		    MDIconButton:
+		        icon:'image-outline'
+		
+		    
+		               
+		        pos_hint: {'center_x': 0.65,'center_y': 0.41}
+		
+		        on_press: root.text_recognition()
+		
+		
+		    MDIconButton:
+		        icon:'camera-wireless-outline'
+		             
+		        pos_hint: {'center_x': 0.75,'center_y': 0.46}
+		        
+		        
+		
+		        on_press: root.name.switch_tab('object')
+		        
+		    MDIconButton:
+		        icon:'headphones'
+		                
+		        pos_hint: {'center_x': 0.75,'center_y': 0.41}
+		        on_press: root.text_to_speech()
+		        
+		    MDIconButton:
+		        icon: 'bookmark-music-outline'
+		
+		        pos_hint: {'center_x': 0.85,'center_y': 0.46}
+		
+		        on_press: root.audio_recogniton_file()
+		
+		
+		    MDIconButton:
+		        icon:'file-search'
+		             
+		        pos_hint: {'center_x': 0.85,'center_y': 0.41}
+		
+		        on_press: root.choose()
+		    Spinner:
+		        id: firstvalue
+		        size_hint: .22,.05
+		        text: "english"
+		        values: ['english', 'vietnamese','japanese']
+		      
+		        pos_hint:{'center_x':.2, 'center_y':.85}
+		        color: '#7FC6CB'
+		        font_name:'iCiel Brush Up.otf'
+		        
+		        font_size:'16sp'
+		
+		        background_color:   '#281C4E'    
+		       
+		
+		    Label:
+		        id: click_label
+		        text: 'You click'
+		        
+		
+		        pos_hint:{'center_x':.2, 'center_y':.5}
+		   
+		    Spinner:
+		        radius: 20
+		        id: secondvalue
+		        size_hint: .22,.05
+		        text: "vietnamese"
+		        values: ['english', 'vietnamese','japanese']
+		        
+		        pos_hint:{'center_x':.2, 'center_y':.43}
+		        color: '#7FC6CB'
+		        font_name:'iCiel Brush Up.otf'
+		        font_size:'16sp'
+		        
+		
+		        background_color: '#281C4E'
+		    MDRectangleFlatButton:
+		        text:'Translate'
+		        font_name:'iCiel Alina.otf'
+		        background_color:'#6AC1DD'
+		        pos_hint:{'center_x':.46,'center_y':.43}
+		
+		        
+		        on_press: root.input_data()
+		
+		        
+		
+		        font_size:'16sp'
+		        text_color:'#DBFFFF'
+
+			MDRectangleFlatButton:
+				text:'Sign Language'
+				font_name:'FingerSpeller W90 RightHand.ttf'
+				pos_hint:{'center_x':.5, 'center_y':.04}
+				on_press: root.bodylanguage_call()
+		
+		Screen:
+			name:'scr_2'
+			id:scr_2
+
+		    FitImage:
+                source:'Background for App.png'
+			Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_pro()
+                pos: 20,1250     
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80  
+		Screen: 
+            id: disconnect_2
+            name: 'disconnect_network_2'
+            FitImage: 
+                source:'Disconnect.png'
+            MDRectangleFlatButton:
+                halign: 'center'
+                text: 'Reload'
+                pos_hint:{'center_x':.5,'center_y':.1}
+                on_release: root.reload_check()

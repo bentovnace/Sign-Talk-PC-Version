@@ -1,0 +1,245 @@
+<HomeScreen>
+    
+    FitImage:
+        source:'Background for App.png'
+        
+    Image: 
+        source: 'Untitled-2.png'
+        x:'35dp'
+        y:'320dp'
+        size_hint:.8,.9
+      
+
+    MDFloatLayout:
+        
+        Carousel:
+            id: carousel
+
+            
+            on_current_slide: root.current_slide(self.index)
+       
+            
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.68}
+
+                size_hint_x: .85
+                size_hint_y: .27
+                radius: [20]
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-300dp'
+                    elevation: 8
+                    
+                    FitImage: 
+                    
+                        source:'porop.png'
+                        radius: [20]
+                        
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.68}
+
+                size_hint_x: .85
+                size_hint_y: .27  
+                radius: [20]  
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-300dp'
+                    elevation: 8
+                    FitImage: 
+                    
+                        source:'probg.jpg'
+                        radius: 20, 20, 20, 20
+            
+
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.68}
+
+                size_hint_x: .85
+                size_hint_y: .27 
+                radius: [20]   
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-300dp'
+                    elevation: 8
+                    FitImage: 
+                    
+                        source:'Study-Abroad.jpg'
+                        radius: 20, 20, 20, 20
+                    #on_release:root.next()
+    #MDBoxLayout:
+    #    pos_hint: {'center_x': 0.5,'center_y': 0.68}
+
+    #    size_hint_x: .85
+    #    size_hint_y: .27
+    #    MDCard:
+    #        radius: [20. ]
+    #        orientation: 'vertical'
+    #        y:'-300dp'
+    #        elevation: 8
+    #        FitImage: 
+                
+    #            source:'Study-Abroad.jpg'
+    #            radius: 20, 20, 20, 20
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.25}
+
+        size_hint_x: .85
+        size_hint_y: .4
+        MDCard:
+            radius: 20
+            
+            y:'-300dp'
+            
+            elevation: 8
+
+           
+            ScrollView:
+                MDList:
+                    spacing: '5dp'
+                    
+                    TwoLineIconListItem:
+                        text:'Dịch ngôn ngữ'
+                        theme_text_color:'Custom'
+                        text_color: '#82EDFF'
+                        font_style: "Button"
+                        secondary_font_style:'Caption'
+                        bold: True
+                        on_press: root.name.switch_tab('translate')
+
+
+                        secondary_text: 'Dịch văn bản theo nhiều cách khác nhau'
+                        IconLeftWidget:
+                            bg_color:(255, 255, 255,1)
+                            Image:
+                                source:'icons8-translation-48.png'
+                                size_hint:  3,3
+
+                        
+                       
+
+                    TwoLineIconListItem:
+
+                        text:'Nhận dạng ngôn ngữ'
+
+                        theme_text_color:'Custom'
+                        text_color: '#82EDFF'
+                        font_style: "Button"
+                        secondary_font_style:'Caption'
+                        bold: True
+                        on_press: root.name.switch_tab('object')
+                        secondary_text:'Xử lí ảnh để nhận dạng ngôn ngữ'
+                        IconLeftWidget:
+                            bg_color:(255, 255, 255,1)
+                            Image:
+                                source:'icons8-object-48.png'
+                                size_hint:  3,3
+                        
+                        
+
+                     
+
+
+                    TwoLineIconListItem:
+
+                        text:'Trò chơi'
+
+                        theme_text_color:'Custom'
+                        text_color: '#82EDFF'
+                        font_style: "Button"
+                        secondary_font_style:'Caption'
+                        bold: True
+                        on_press: root.name.switch_tab('game')
+                        secondary_text:'Cải thiện khả năng nghe, đọc ,viết'
+
+                        IconLeftWidget:
+                            bg_color:(255, 255, 255,1)
+                            Image:
+                                source:'icons8-game-64.png'
+                                size_hint:  3,3
+                                
+
+                        
+                        
+
+
+
+
+
+                    TwoLineIconListItem:
+
+                        text:'Rèn luyện khả năng phát âm'
+
+                        theme_text_color:'Custom'
+                        text_color: '#82EDFF'
+                        font_style: "Button"
+                        secondary_font_style:'Caption'
+                        bold: True
+                        on_press: root.name.switch_tab('pronunciation')
+
+                        secondary_text:'Cải thiện phát âm tiếng anh'
+                        IconLeftWidget:
+                            bg_color:(255, 255, 255,1)
+                            Image:
+                                source:'icons8-read-64.png'
+                                size_hint:  2.5,2.5
+
+
+                        
+
+
+
+                    TwoLineIconListItem:
+
+                        text:'Người bạn Ai thân thiện'
+
+                        theme_text_color:'Custom'
+                        text_color: '#82EDFF'
+                        font_style: "Button"
+                        secondary_font_style:'Caption'
+                        bold: True
+                        on_press: root.name.switch_tab('ai_chatbot')
+
+                        secondary_text:'Giao tiếp tiếng anh với Ai'
+                        IconLeftWidget:
+                            bg_color:(255, 255, 255,1)
+                            Image:
+                                source:'icons8-chatbot-64.png'
+                                size_hint:  3,3
+
+                             
+                   
+    MDLabel:
+        text: "Chức năng:"
+        font_size:'35sp'
+        pos_hint:{'center_x':.6,'center_y':.485}
+
+        theme_text_color:"Custom"
+
+        text_color:'#FFFFFF'
+        font_name:'iCiel Alina.otf'
+
+    MDLabel:
+        id: slide0
+        text: '.'
+        color: rgba(253,140,95,255)
+        pos_hint:{'center_x':1.25,'center_y':.52}
+        font_size:'80sp'
+    MDLabel:
+        id: slide1
+        text: '.'
+        color: rgba(111,111,111,255)
+        pos_hint:{'center_x':1.3,'center_y':.52}
+        font_size:'80sp'
+
+    MDLabel:
+        id: slide2
+        text: '.'
+        color: rgba(111,111,111,255)
+        pos_hint:{'center_x':1.35,'center_y':.52}
+        font_size:'80sp'        

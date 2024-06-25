@@ -1,0 +1,236 @@
+
+<RootScreen>
+
+    ScreenManager:
+        id: main_scr
+        Screen:
+            id:open_scr
+            name:'open_scr'
+            MDFloatLayout:
+                Image:
+                    source:"open.gif"
+                    allow_stretch: True
+                    anim_delay: 0.04
+                
+                MDTextButton:
+                    text:'Skip'
+                    pos_hint:{'center_x':.88,'center_y':.95}
+                    font_name:'Gabriola.ttf'
+                    font_size:'34sp'
+                    color: rgba(111,111,111,255)
+                    on_release:root.change_open()
+
+        Screen:
+            id: test
+            name:'test_scr'
+            
+            MDFloatLayout:
+                md_bg_color: 1,1,1,1
+                
+                Carousel:
+                    id: carousel
+
+                 
+                    on_current_slide: root.current_slide(self.index)
+                    
+
+                    MDFloatLayout:
+                        Image:
+                            source:'message.gif'
+                            allow_stretch: True
+                            anim_delay: 0.04
+
+                        MDTextButton:
+                            text:'Skip'
+                            pos_hint:{'center_x':.88,'center_y':.95}
+                            font_name:'Gabriola.ttf'
+                            font_size:'34sp'
+                            color: rgba(111,111,111,255)
+
+                            on_release:root.next()
+
+                        
+                    MDFloatLayout:
+                        Image:
+                            source:'FRIEND.gif'
+                            allow_stretch: True
+                            anim_delay: 0.04               
+                        MDTextButton:
+                            text:'Skip'
+                            pos_hint:{'center_x':.88,'center_y':.95}
+                            font_name:'Gabriola.ttf'
+                            font_size:'34sp'
+                            color: rgba(111,111,111,255)
+                            on_release:root.next()
+                        
+                    MDFloatLayout:
+                        Image:
+                            source:'help.gif'
+                            allow_stretch: True
+                            anim_delay: 0.04               
+                        MDTextButton:
+                            text:'Skip'
+                            pos_hint:{'center_x':.88,'center_y':.95}
+                            font_name:'Gabriola.ttf'
+                            font_size:'34sp'
+                            color: rgba(111,111,111,255)
+                            on_release:root.close()
+                        
+                   
+            MDLabel:
+                id: slide0
+                text: '.'
+                color: rgba(253,140,95,255)
+                pos_hint:{'center_x':.9,'center_y':.15}
+                font_size:'80sp'
+            MDLabel:
+                id: slide1
+                text: '.'
+                color: rgba(111,111,111,255)
+                pos_hint:{'center_x':1,'center_y':.15}
+                font_size:'80sp'
+
+            MDLabel:
+                id: slide2
+                text: '.'
+                color: rgba(111,111,111,255)
+                pos_hint:{'center_x':1.1,'center_y':.15}
+                font_size:'80sp'
+
+
+        Screen:
+            id: close 
+            name:'close'
+            MDFloatLayout:
+                Image:
+                    source:'hi3.gif'
+                    allow_stretch: True
+                    anim_delay: 0.04               
+                Button:
+                    text:"Bắt đầu"
+                    background_color: 0,0,0,0
+                    font_name:'Cucho.otf'
+                    font_size:'26sp'
+                    pos_hint:{'center_x':.5,'center_y':.08}
+                    size_hint:.9,0.075
+                    on_press: root.change_screen()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(50,40,106,255)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [15]
+
+ 
+
+        Screen:
+            id: root_screen
+            name:'root_screen_pro'
+            MDBoxLayout:
+                orientation: 'vertical'
+        
+                
+                MDBottomNavigation:       
+                    id: main                
+                    
+                    MDBottomNavigationItem:
+
+                            
+                        icon:'home'                              
+                             
+                        text:'Home'
+                        on_leave: app.on_leave()       
+                        
+                        
+                        HomeScreen:
+                            name: main
+                        
+                        
+                    MDBottomNavigationItem:
+
+                        
+
+                        name:"translate" 
+                        icon:'translate'
+                        text:'Dịch'
+                        
+                        on_leave: app.on_leave()
+
+
+                        
+
+                        TranslateScreen:
+                            name: main
+
+                                
+
+                                
+                                    
+                            
+                        
+                    MDBottomNavigationItem:
+                        
+
+                        name:'object'
+                        icon:'cube-scan'
+                        text:'Cam'
+                        on_leave: app.on_leave()
+                        
+                        ObjectScreen:
+                            name: main
+                        
+                        
+                    MDBottomNavigationItem:
+                        
+
+                        name:'game'
+                        icon:'gamepad-variant-outline'
+                        text:'Game'
+                        on_leave: app.on_leave()
+
+                        GameScreen:
+                            name: main
+                            
+                        
+                        
+                    MDBottomNavigationItem:
+
+
+                        
+
+                        name:'pronunciation'
+                        icon:'human-greeting-proximity'
+                        text:'Speak'
+                        on_leave: app.on_leave()
+
+                        PronunciationScreen:
+                            name: main
+                            
+
+                        
+                    MDBottomNavigationItem:
+
+
+
+                        name:'ai_chatbot'
+                        icon:'robot-excited-outline'
+                        text: 'Bot'
+                        on_leave: app.on_leave()
+
+                        ChatbotScreen:
+                            name:main 
+                        
+                        
+                        
+                    MDBottomNavigationItem:
+
+                        
+
+                        name:'profile'
+                        icon:'face-profile'
+                        text: 'ME'
+                        
+                        ProfileScreen
+
+                    

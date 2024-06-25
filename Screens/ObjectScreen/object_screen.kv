@@ -1,0 +1,1848 @@
+
+#:import Vector kivy.vector.Vector
+
+<MChip@MDChip>:
+    selected_chip_color:[1,1,1,0.5]
+    icon:''
+
+    size_hint_y: 1
+    color:0,0,0,0
+
+
+<Chip>:
+    width:self.texture_size[0]
+    background_normal: 'assets/trans.png'
+    background_selected: 'assets/trans.png'
+    background_down: 'assets/trans.png'
+    canvas.before:
+        Color:
+            rgba:root.dc
+        RoundedRectangle:
+            pos:self.pos
+            size:self.size
+    on_state:root.call()
+        
+
+        
+<RoundedImage@Widget>:
+    source:None
+    canvas.after:
+        Color:
+            rgba:[1,1,1,1]
+        Ellipse:
+            pos:self.pos
+            size:Vector(self.size)-Vector(10,10)
+            source: root.source
+
+    
+    
+<Plate>:
+    id:plt
+    orientation: 'vertical'
+    focus_behavior: True
+    ripple_behavior: True
+    spacing: 12
+    padding: [0, 2, 0,10]
+ 
+    RelativeLayout:
+        
+        FitImage:
+            id:_img
+            source:root._image
+
+
+        Label:
+            
+            pos_hint: {'center_x':0.94 ,'center_y ':0.5}
+            #size_hint:(None,None)
+            #size:self.texture_size
+            text:root._time
+            
+            #color: (1, 1, 1, 1)
+            size_hint:None,None
+            height: 10+5
+            
+            width:self.texture_size[0]+5
+            #bold: 1
+            canvas.before:
+                Color:
+                    rgba:[0,0,0,1]
+                Rectangle:
+                    #pos:self.pos
+                    pos:self.pos
+                    size:self.size
+    
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        MDBoxLayout:
+            size_hint_x: None
+            width: 50
+            FitImage:
+                source:root._rimage
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                MDLabel:
+                    text: root._video_title
+                    shorten_from:'right'
+                    shorten:True
+                    bold:True
+                    #theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                MDIconButton:
+                    icon:'dots-vertical'
+                    id:_mibc
+                    on_release:root.open_menu(_mibc)
+
+            BoxLayout:
+                MDLabel:
+                    text: root._channel_name
+                    #bold:True
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    font_size: '12sp'
+    
+
+
+
+<ObjectScreen>
+
+    ScreenManager:
+        id:main
+        
+        Screen:
+            name:'scr_1'
+            id: scr_1
+            FitImage:
+
+                source:'Background for App-Bodylang.png'
+            MDCard:
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    
+                size_hint_x: .85
+                size_hint_y: .7 
+                radius: 20
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:2
+                        spacing:'20dp'
+                        padding: '20dp'
+                        
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.open_new()
+                            
+                            Image:
+                                source:'sign lang png.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Dictionary'
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                            
+                       
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.run_camera()   
+                            on_press: root.build_camera()
+                        
+                            
+                            Image:
+                                source:'pro.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Camera'
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+
+                       
+                            
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.choose()
+                            
+                            Image:
+                                source:'picture_file.png'
+                                size_hint_x: 2
+                                size_hint_y: 1.9
+                                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                            MDLabel:
+                                text:'Picture'
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+
+                        
+                            
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.choose2()
+                            
+                            Image:
+                                source:'video_file.png'
+                                size_hint_x: 2
+                                size_hint_y: 2
+                                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                            MDLabel:
+                                text:'Video to text'
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            #on_release: root.choose2()
+                            on_release: root. play_v1_stream()
+                            on_press: root.get_data_from_stream()
+                            Image:
+                                source:'connect_v2.jpg'
+                                size_hint_x: 2.2
+                                size_hint_y: 2.2
+                                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                            MDLabel:
+                                text:'Live V1'
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            #on_release: root.choose2()
+                            on_release: root. play_v2_stream()
+                            on_press: root.get_data_from_stream()
+                            Image:
+                                source:'connect_v3.jpg'
+                                size_hint_x: 1
+                                size_hint_y: 1
+                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+                            MDLabel:
+                                text:'Live V2'
+                                pos_hint: {'center_x': 0.5,'center_y': 0.1}
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            #on_release: root.choose2()
+                            
+                            on_press: root.load_url_2()
+
+                            Image:
+                                source:'YouTube.jpg'
+                                size_hint_x: 2.3
+                                size_hint_y: 2.3
+                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+                            MDLabel:
+                                text:'Youtobe'
+                                pos_hint: {'center_x': 0.5,'center_y': 0.1}
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'12dp'
+                            size_hint: 1, None
+                            height:'230dp'
+                            elevation: 20
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            #on_release: root.choose2()
+                            
+                            on_press: root.choose_pro()
+
+                            Image:
+                                source:'videotosign.jpg'
+                                size_hint_x: 2.3
+                                size_hint_y: 2.3
+                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+                            MDLabel:
+                                text:'Video to sign'
+                                pos_hint: {'center_x': 0.5,'center_y': 0.1}
+                                halign: 'center'
+                                font_name:'Jaime Blues.ttf'
+                                font_size:'32dp'
+                                
+        Screen:
+            id:video_translate
+            name: "video_translate"
+            FitImage:
+                source:"videotosign.png"
+
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.65}
+
+                size_hint_x: .9
+                size_hint_y: .3 
+                radius: [20,20,0,0]   
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-200dp'
+                    elevation: 8
+                    
+                      
+                    VideoPlayer:
+                        
+                        id: videoplay_31
+                      
+                        thumbnail:"videotosign.jpg"
+                        play: False
+
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                size_hint_x: .9
+                size_hint_y: .3 
+                radius: [20,20,0,0]   
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-200dp'
+                    elevation: 8
+                    
+                      
+                    VideoPlayer:
+                        
+                        id: videoplay_32
+                        source:""
+                        play: False
+                        thumbnail:"Icon.png"
+            MDFillRoundFlatButton:
+                text:"File"
+                md_bg_color: "#2196F3"
+                pos_hint:{'center_x':.18,"center_y":.45}         
+                on_press: root.choose_pro()
+            MDFillRoundFlatButton:
+                id: choose_character_new
+                text:"Character"
+                md_bg_color: "#FFFFFF"
+                pos_hint:{'center_x':.4,"center_y":.45}
+                on_press: root.character_new()
+            MDFillRoundFlatButton:
+                id: name_character_new
+                pos_hint:{'center_x':.62,"center_y":.45}
+                text:"Vivian"
+            MDFillRoundFlatButton:
+                id: load_video_to_sign
+                pos_hint:{'center_x':.84,"center_y":.45}
+                text:"load"
+                md_bg_color: "#52D66C"
+                on_press:root.mp3_upload()
+            MDProgressBar:
+                id: progress_new
+                color:"#52D66C"
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                size_hint_x:.8
+
+            MDLabel:
+
+                id: pathname_src
+                text:'hello'
+                halign:'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.37}
+                font_size:"14"
+                theme_text_color: "Custom"
+                text_color: "#FCEFD2"
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.youtobe_back_screen()
+                pos: 20,690
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80 
+            MDIconButton:
+                icon:'backburger'
+                on_press: root.youtobe_back_screen()
+                pos_hint: {'center_x': 0.05,'center_y': 0.95}
+        
+                
+        Screen:
+            id: youtobe_media
+            name: "youtobe"
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    padding: [5, 5,5, 5]
+                    size_hint_y: None
+                    height: '48dp'
+                    #MDIconButton:
+                    #    icon: 'youtube'
+
+                    Image:
+                        source: 'yicn.png'
+                        size_hint_x: None
+                        width: 50
+                        # canvas.after:
+                        #     Color:
+                        #         rgba:[1,0,0,1]
+                        #     Rectangle:
+                        #         pos:self.pos
+                        #         size:self.size
+                    MDLabel:
+                        text: 'YouTube'
+                        halign: "left"
+                        font_size: '30sp'
+                    
+                        font_name: 'kenyan-coffee_regular.ttf'
+                
+                    
+                    MDIconButton:
+                        icon:'backburger'
+                        on_press: root.youtobe_back_screen()
+                    MDIconButton:
+                        icon:'magnify'
+                        id:_ix
+                        on_press: root.search_video()
+
+                    RoundedImage:
+                        size_hint: (None, None)
+                        size:_ix.size
+                        source:'Avata.png'
+                MDSeparator:
+                    height: "1dp"
+                
+                ScrollView:
+                    do_scroll_y: False
+                    size_hint_y: None
+                    height: '48dp'
+                    bar_width:0
+
+
+
+                    BoxLayout:
+                        padding: [5, 5,5, 5]
+                        size_hint_y: None
+                        height: '48dp'
+                        size_hint_x: None
+                        width:self.minimum_width
+                        spacing: 5
+
+                        MDRectangleFlatIconButton:
+                            icon: "compass"
+                            text: "Load"
+                            theme_text_color: "Custom"
+                            text_color: "#FF0000"
+                            line_color: "#FF9902"
+                            icon_color: "#212121"
+                            on_press: root.load_url_2()
+                        Widget:
+                            size_hint_x:None
+                            width:5
+                        MDSeparator:
+                            orientation: 'vertical'
+                            height: "10dp"
+                        Widget:
+                            size_hint_x: None
+                            width: 25
+                        #MDChooseChip:
+                        #    orientation: 'bt-rl'
+                        MDFillRoundFlatButton:
+                            id: choose_character
+                            text:"Character"
+                            md_bg_color: "#FFFFFF"
+                            on_press: root.character()
+                        MDFillRoundFlatButton:
+                            id: name_character
+                            text:"Vivian"
+                            
+
+
+                        
+        
+
+
+
+                ScrollView:
+                    bar_width:0
+                    BoxLayout:
+
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        
+                        Plate:
+                            id: Plate1
+                            
+                            size_hint_y: None
+                            _image:"https://i.ytimg.com/vi/XxTsAioxUGE/sddefault.jpg?v=6389bbcd"
+                            _channel_name:""
+                            _time:"39:28"
+                            height: 250
+                            _video_title:''
+                            on_press: root.youtobe_video_1()
+                        Plate:
+                            id: Plate2
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/lKHI_hJZ6dI/sddefault.jpg"
+                            _channel_name:""
+                            _time:'20:10'
+                            _video_title:''
+                            on_press: root.youtobe_video_2()
+                        Plate:
+                            id: Plate3
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_3()
+                        Plate:
+                            id: Plate4
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_4()
+                        Plate:
+                            id: Plate5
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_5()
+                        Plate:
+                            id: Plate6
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_6()
+                        Plate:
+                            id: Plate7
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_7()
+                        Plate:
+                            id: Plate8
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_8()
+                        Plate:
+                            id: Plate9
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_9()
+                        Plate:
+                            id: Plate10
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_10()
+                        Plate:
+                            id: Plate11
+                            size_hint_y: None
+                            height: 250
+                            _image:"https://i.ytimg.com/vi/kyck8iUOTKU/sddefault.jpg?v=5e1ef802"
+                            
+                            _time:"18:22"
+                            _channel_name:""
+                            _video_title:""
+                            on_press: root.youtobe_video_11()
+                     
+            MDTextFieldRound:
+                id: search_yt
+                hint_text: "Search"
+                size_hint:.35,.03
+                max_text_length: 15
+                helper_text: "max"  
+                pos_hint:{'center_x':.5,'center_y':.97}
+                cursor_color: '#FEDD48'
+                hint_text_color:'#5A0000'
+                font_size:'18sp'
+                font_name:'iCielBCDowntown-Regular.otf'
+                foreground_color:'#5A0000'
+                halign:'center'
+
+                        
+
+        Screen:
+            id: load_video
+            name:'video_youtobe'
+           
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    padding: [5, 5,5, 5]
+                    size_hint_y: None
+                    height: '48dp'
+                    #MDIconButton:
+                    #    icon: 'youtube'
+
+                    Image:
+                        source: 'yicn.png'
+                        size_hint_x: None
+                        width: 50
+                        # canvas.after:
+                        #     Color:
+                        #         rgba:[1,0,0,1]
+                        #     Rectangle:
+                        #         pos:self.pos
+                        #         size:self.size
+                    MDLabel:
+                        text: 'YouTube'
+                        halign: "left"
+                        font_size: '30sp'
+                    
+                        font_name: 'kenyan-coffee_regular.ttf'
+
+                    
+                    MDIconButton:
+                        icon:'backburger'
+                        on_press: root.youtobe_back_screen_2()
+                    MDIconButton:
+                        icon:'magnify'
+                        id:_ix
+                        on_press: root.search_video_2()
+                    RoundedImage:
+                        size_hint: (None, None)
+                        size:_ix.size
+                        source:'Avata.png'
+                MDSeparator:
+                    height: "1dp"
+                ScrollView:
+                    do_scroll_y: False
+                    size_hint_y: None
+                    height: '48dp'
+                    bar_width:0
+
+
+
+                    BoxLayout:
+                        padding: [5, 5,5, 5]
+                        size_hint_y: None
+                        height: '48dp'
+                        size_hint_x: None
+                        width:self.minimum_width
+                        spacing: 5
+
+                        MDRectangleFlatIconButton:
+                            icon: "compass"
+                            text: "Load"
+                            theme_text_color: "Custom"
+                            text_color: "#FF0000"
+                            line_color: "#FF9902"
+                            icon_color: "#212121"
+                            on_press: root.gif_get()
+
+                        Widget:
+                            size_hint_x:None
+                            width:5
+                        MDSeparator:
+                            orientation: 'vertical'
+                            height: "10dp"
+                        Widget:
+                            size_hint_x: None
+                            width: 25
+                        #MDChooseChip:
+                        #    orientation: 'bt-rl'
+                        MDFillRoundFlatButton:
+                            id: character_choose
+                            md_bg_color: "#FFFFFF"
+                            text:"Character"
+                            on_press: root.character()
+                        MDFillRoundFlatButton:
+                            md_bg_color: "#FFFFFF"
+                            text:"Sub -"
+                            on_press: root.sub_back()
+
+                        MDFillRoundFlatButton:
+                            md_bg_color: "#FFFFFF"
+                            text:"Sub +"
+                            on_press: root.sub_next()
+
+                        
+                        
+        
+                        
+        
+                        
+                MDBoxLayout:
+                    md_bg_color: 1,1,1,1
+            
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.72}
+
+                size_hint_x: .9
+                size_hint_y: .3 
+                radius: [20,20,0,0]   
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-200dp'
+                    elevation: 8
+                    
+                      
+                    VideoPlayer:
+                        
+                        id: videoplay_2
+                        source:""
+                        play: False
+                        
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.47}
+
+                size_hint_x: .9
+                size_hint_y: .1
+                radius: [20,20,0,0]   
+                
+                MDLabel:
+                    id: youtobe_tiltle
+                    font_name:'iCielBCDowntown-Regular.otf'
+                    halign:'left'
+                    font_size:'28sp'
+                    pos_hint: {'center_x': 0.5,'center_y': .5}
+            MDLabel:
+                id:sub
+                text:"Xin chào"
+                halign:'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.05}
+                font_name:'iCielBCDowntown-Regular.otf'
+                font_size:'32sp'
+            #Image:
+            #    id: gif_img
+            #    pos_hint:{'center_x':.5,'center_y':.2}
+            #    source:"gif\\tambiet.gif"
+            #    size_hint:.8,.8
+            #    allow_stretch: True
+            #    anim_delay: 0.05
+            #    mipmap: True
+            #    allow_stretch: True 
+
+            MDBoxLayout:
+                md_bg_color: 1,1,1,1
+                pos_hint: {'center_x': 0.5,'center_y': 0.25}
+
+                size_hint_x: .9
+                size_hint_y: .3 
+                radius: [20,20,0,0]   
+                MDCard:
+                    radius: [20]
+                    orientation: 'vertical'
+                    y:'-200dp'
+                    elevation: 8
+                    
+                      
+                    VideoPlayer:
+                        
+                        id: videoplay_3
+                        source:""
+                        play: False
+                        thumbnail:"Icon.png"
+
+            MDTextFieldRound:
+                id: search_yt_2
+                hint_text: "Search"
+                size_hint:.35,.03
+                max_text_length: 15
+                helper_text: "max"  
+                pos_hint:{'center_x':.5,'center_y':.97}
+                cursor_color: '#FEDD48'
+                hint_text_color:'#5A0000'
+                font_size:'18sp'
+                font_name:'iCielBCDowntown-Regular.otf'
+                foreground_color:'#5A0000'
+                halign:'center'
+            MDProgressBar:
+                id: progress_2
+                color:"#7B1B32"
+                pos_hint: {'center_x': 0.75,'center_y': 0.55}
+                size_hint_x:.35
+            
+           
+                
+        Screen:
+            id:setting_app
+            name:'setting_app'
+            FitImage:
+                source:'Setting_pro_Img.png'
+            
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.28}
+                size_hint_x: 1
+                size_hint_y: .65
+                
+                MDCard:
+                    radius: 30
+                    
+                    y:'-300dp'
+                    
+                    elevation: 10
+
+            
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.6}
+                size_hint_x: .8
+                size_hint_y: .25
+                
+                MDCard:
+                    radius: 20
+                    
+                    y:'-300dp'
+                    
+                    elevation: 40
+                    MDLabel:
+                        text:'Trần Đăng Khoa'
+                        font_size:'32sp'
+                        font_name:'LesFruits.ttf'
+                        halign:'center'
+            MDLabel:
+                text:" Everything has beauty, but not everyone sees it."
+                font_size:'13sp'
+                font_name:'Butcherandblock.otf'
+                halign:'center'
+                pos_hint: {'center_x': 0.5,'center_y': 0.55}
+            MDBoxLayout:
+                size_hint_x:.270
+                size_hint_y:.140
+                pos_hint: {'center_x': 0.5,'center_y': 0.73}
+                
+                canvas:
+                    Color:
+                        rgb: (1,1,1,1)
+                    Ellipse:
+                        size: self.size
+                        pos: self.pos
+                        source:'gradient.jpg'
+                    
+            MDBoxLayout:
+                size_hint_x:.250
+                size_hint_y:.140
+                pos_hint: {'center_x': 0.5,'center_y': 0.73}
+                
+                canvas:
+                    Color:
+                        rgb: (1,1,1,1)
+                    Ellipse:
+                        size: self.size
+                        pos: self.pos
+                        source:'Avata.png'
+                
+                
+      
+            
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.25,'center_y': 0.25}
+                size_hint_x: .40
+		        size_hint_y: .31
+                
+                MDCard:
+                    radius: 20
+		            orientation: 'vertical'
+		            y:'20dp'
+                    elevation:10
+                    ripple_behavior: True
+                    on_release: root.state_recognition_capture()
+                    
+                    Image:
+                        source:'capture_pic.jpg'
+                        size_hint_x: 2
+                        size_hint_y: 1.9
+                        pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    MDLabel:
+                        text:'Capture'
+                        halign: 'center'
+                        font_name:'Jaime Blues.ttf'
+                        font_size:'32dp'
+
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.75,'center_y': 0.25}
+                size_hint_x: .40
+		        size_hint_y: .31
+                
+                MDCard:
+                    radius: 20
+		            orientation: 'vertical'
+		            y:'20dp'
+                    elevation:10
+                    ripple_behavior: True
+                    on_release: root.state_recognition_stream()
+                    on_press: root.get_data_from_stream()
+                    
+                    Image:
+                        source:'live_stream.png'
+                        size_hint_x: 1
+                        size_hint_y: 1
+                        pos_hint: {'center_x': 0.5,'center_y': 0.3}
+                    MDLabel:
+                        text:'Streaming Video'
+                        halign: 'center'
+                        font_name:'Jaime Blues.ttf'
+                        font_size:'32dp'
+
+            MDLabel:
+                text:'V1'
+                halign:'center'
+                pos_hint: {'center_x': 0.65,'center_y': 0.05} 
+            MDLabel:
+                text:'V2'
+                halign:'center'
+                pos_hint: {'center_x': 0.85,'center_y': 0.05} 
+            MDSwitch:
+                pos_hint: {'center_x': 0.75,'center_y': 0.05} 
+                width: dp(45)
+                on_active: root.RTRecognition()
+
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_setting()
+                pos: 20,690
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80 
+            
+                
+       
+
+        Screen: 
+            id: disconnect_3
+            name: 'disconnect_network_3'
+            FitImage: 
+                source:'Disconnect.png'
+            MDRectangleFlatButton:
+                halign: 'center'
+                text: 'Reload'
+                pos_hint:{'center_x':.5,'center_y':.1}
+                on_release: root.reload_check() 
+        Screen:
+            name: 'scr_2'
+            
+            id: scr_2
+            FitImage:
+                source:'Background for App.png'
+            Image:
+                id:img_camera
+           
+            
+            
+     
+            #Camera:
+            #    id: camera
+            #    play: False
+
+            #    resolution: (640, 480)
+               
+                              
+            #    pos_hint:{'center_x':.5,'center_y':.5}
+            #    canvas.before:
+            #        PushMatrix
+                #    Rotate:
+                #        angle: -90
+                #        origin: self.center
+            #    canvas.after:
+            #        PopMatrix
+            
+			#ToggleButton:
+			#	text: 'Play'
+			#	on_press: camera.play = not camera.play
+			#	size_hint_y: None
+			#	height: '48dp'
+            #   pos_hint:{'center_x':.5,'center_y':.02}
+            #Button:
+            #    size_hint:.2,.1
+            #    background_color: 0,0,0,0                
+            #    on_release: root.back_2()
+
+            #    pos: 20,690  
+            #    size: 80,80 
+            #    Image:
+                    
+            #        source:'icons8-back-arrow-65.png'
+            #        pos: 20,690    
+            #        size: 80,80 
+
+            
+            MDRectangleFlatButton: 
+                text: 'open'
+                pos_hint: {'center_x': .5,'center_y': .95}
+                on_release: root.open_1()
+            
+            
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.setting_app()
+                pos: 350,690
+                size: 60,60   
+                Image:
+                    
+                    source:'Setting.png'
+                    pos: 350,690
+                    size: 60,60 
+                    #pos: 300,690
+                    #size: 80,80 
+            
+            Button:
+                id: stateloader                   
+                ripple_behavior: True
+                background_color: 0,0,0,0
+                size_hint:.2,.1
+                pos: 300,140
+                on_press: root.capture()
+                on_release: root.process_data()
+                
+                Image:
+                    id: rec_image
+                    source:'icons8-record-100.png'
+                    #pos: 300,140
+                    
+                    #size: 120,120
+                    pos: 180,70
+                    
+                    size: 120,120
+            MDSwitch:
+                pos_hint: {'center_x': 0.9,'center_y': 0.08} 
+                width: dp(45)
+                on_active: root.state()
+        
+            MDLabel:
+                id: state_recognition_load
+                text:''
+                font_name:'iCiel Alina.otf'
+                font_size:"36sp"
+                halign:'center'
+                pos_hint:{'center_x':.85,'center_y':.95}
+                theme_text_color: 'Custom'
+                text_color: '#F44336'
+            MDLabel:
+                id: result_stream
+                text:'result'
+                font_name:'LesFruits.ttf'
+                font_size:"48sp"
+                halign:'center'
+                pos_hint:{'center_x':.5,'center_y':.85}
+                theme_text_color: 'Custom'
+                text_color: '#7FBA00'
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_2()
+                pos: 20,690   
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80  
+
+        Screen:
+            name:'scr_4'
+            id: scr_4
+            FitImage:
+                source: "Background for App.png"
+            Image:
+                id: image_base
+                
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_record()
+                pos: 20,690   
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80 
+        Screen:
+            name:'scr_6'
+            id:scr_6
+            FitImage:
+                source:'Background for App.png'
+            MDToolbar:
+                title: "Từ điển ngôn ngữ kí hiệu"
+                left_action_items: [["backspace-outline", lambda x: root.back_scr()]]
+                pos_hint:{'center_x':.5,'center_y':.97}
+                md_bg_color:[1,0,1,1]
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.43}
+                    
+                size_hint_x: .92
+                size_hint_y: 1
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:1
+                        spacing:'20dp'
+                        padding: '20dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'700dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                          
+                            
+                            Image:
+                                id: bodyimg
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                      
+
+        Screen:
+            name:'scr_7'
+            id:scr_7
+            FitImage:
+                source:'Background for App.png'
+            MDToolbar:
+                title: "Từ điển ngôn ngữ kí hiệu"
+                left_action_items: [["backspace-outline", lambda x: root.back_scr()]]
+                pos_hint:{'center_x':.5,'center_y':.97}
+                md_bg_color:[1,0,1,1]
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.43}
+                    
+                size_hint_x: .92
+                size_hint_y: 1
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:1
+                        spacing:'20dp'
+                        padding: '20dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'700dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                          
+                            
+                            Image:
+                                id: bodyimgpro
+                                
+                              
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        MDCard:
+                            id: card
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'700dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            Image:
+                                id: bodyimg2
+        Screen:
+            name:'pictureshow'
+            id: scr_picture
+            FitImage:
+                source: "Background for App.png"
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_2()
+                pos: 20,690  
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80 
+            Image:
+                id:imagedetect
+        
+        Screen:
+            name:'load'
+            id:load
+            FitImage:
+                source:'Wait.png'
+            
+        Screen:
+            name:'video'
+            id: video
+            FitImage:
+                source: "Background for App.png"
+            
+            VideoPlayer:
+
+                id: videoplay
+                state: 'play'
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_2()
+                pos: 20,690  
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690
+                    size: 80,80 
+            
+        Screen:
+            name:'scr_5'
+            id: scr_5
+            FitImage:
+                source: "Background for App.png"
+            
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.back_pro()
+                pos: 20,690    
+                size: 80,80  
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,690    
+                    size: 80,80   
+
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    
+                size_hint_x: .92
+                size_hint_y: 1
+               
+
+                ScrollView:
+                    size: self.size
+
+                    GridLayout:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols:1
+                        spacing:'20dp'
+                        padding: '20dp'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_1()
+                         
+                            Image:
+                                source:'icons8-abc-64.png'
+                                size_hint:5,5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                
+                            MDLabel:
+                                text:'Alphabets'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FF5576'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_2()
+                            Image:
+                                source:'comunicate.jpg'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Giao tiếp'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#49257E'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_3()
+                            
+                            Image:
+                                source:'Family2.jpg'
+                                size_hint_x: 3.5
+                                size_hint_y: 3.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Gia đình'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#246AFC'
+            
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_4()
+                            
+                            Image:
+                                source:'Question2.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Từ Để hỏi'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FFD954'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_5()
+                            Image:
+                                source:'trainimg.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Phương tiện di chuyển'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FE7B6E'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_6()
+                            Image:
+                                source:'Clock.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Thời gian'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#C886D3'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_7()
+                            Image:
+                                source:'Clothing.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Quần áo'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#6B79DA'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_8()
+                            Image:
+                                source:'painting.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Màu sắc'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#7EC13D'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_9()
+                            Image:
+                                source:'Body_2.jpg'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Cơ thể'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#FF9E5A'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_10()
+                            Image:
+                                source:'angry.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Cảm xúc'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#BFB16F'
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_11()
+                            Image:
+                                source:'doctor.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Y tế'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#82B4FC'
+
+                        MDCard:
+                            orientation:'vertical'
+                            padding:'8dp'
+                            size_hint: 1, None
+                            height:'210dp'
+                            elevation: 5 
+                            radius: 15
+                            border_radius: 20
+                            ripple_behavior: True
+                            on_release: root.pro_12()
+                            Image:
+                                source:'House_pro.png'
+                                size_hint_x: 2.5
+                                size_hint_y: 2.5
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            MDLabel:
+                                text:'Nhà ở'
+                                halign: 'center'
+                                font_name:'LesFruits.ttf'
+                                font_size:'36dp'
+                                theme_text_color: 'Custom'
+                                text_color: '#271D4A'
+            MDTextFieldRound:
+                id: searching
+                hint_text: "Search......"
+                size_hint:.5,.05
+                max_text_length: 15
+                helper_text: "max"  
+                pos_hint:{'center_x':.5,'center_y':0.95}
+                cursor_color: '#FEDD48'
+                hint_text_color:'#FF5576'
+                font_size:'28sp'
+                font_name:'Cucho.otf'
+                foreground_color:'#FF5576'
+                halign:'center'
+                fill_color: 0, 0, 0, .4
+            MDIconButton:
+                icon:"find-replace"
+                pos_hint:{'center_x':.85,'center_y':0.95}
+                user_font_size:"18sp"
+                theme_text_color:'Custom'
+                text_color: 1,1,1,1
+                md_bg_color: 1, 170/255, 23/255,1   
+
+                on_press: root.searching()     
+
+<Signbottomsheet@BoxLayout>:
+    
+        
+    orientation:'vertical'
+    size_hint_y: None
+    height:'500dp'
+    radius: 30
+    MDLabel:
+        text:'Kết quả tìm kiếm phù hợp'
+        pos_hint:{"center_x":.5,"center_y":.9}
+        halign:'center'
+        font_size:'24sp'
+        font_name:'Cucho.otf'
+    Image:
+        id: signsearch
+        pos_hint:{"center_x":.5,"center_y":.5}
+        size_hint: 2,2
+        
+<CustomBottomSheet@BoxLayout>:
+    
+        
+    orientation:'vertical'
+    size_hint_y: None
+    height:'500dp'
+    radius: 30
+   
+    MDFloatLayout:
+        orientation:'vertical'
+        FitImage:
+            source:'Back.jpg'
+
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'center_y': 0.64}
+    
+            size_hint_x: .85
+            size_hint_y: .31
+            
+                
+            MDCard:
+                
+    
+                radius: 20
+                orientation: 'vertical'
+                y:'-300dp'
+                
+                MDTextField:
+                    id:textinput_bdl
+                    size_hint_x: .8
+                    size_hint_y: .78
+                    hint_text: "Văn Bản"
+                    font_name_hint_text:'iCielBCDowntown-Regular.otf'
+                    font_size:'24sp'
+                    font_name:'Cucho.otf'                             
+                    multiline: True 
+                    pos_hint: {"center_x": .5, "top": .6}
+                    
+    
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'center_y': 0.23}
+    
+            size_hint_x: .85
+            size_hint_y: .31
+            MDCard:
+                id:textoutputbox
+                radius: 20
+                orientation: 'vertical'
+                y:'-300dp'
+    
+                MDTextField:
+                    id:textoutput_bdl
+                    size_hint_y: .78
+                    size_hint_x: .8
+                    hint_text: "Dịch"
+                    font_size:'24sp'
+                    
+    
+                    font_name_hint_text:'iCielBCDowntown-Regular.otf'
+                    font_name:'Cucho.otf'
+                    
+                    
+                    multiline: True
+                    pos_hint: {"center_x": .5, "top": .6}
+
+        Spinner:
+            id:firstvalue_bdl
+            size_hint: .22,.05
+            text: "english"
+            values: ['english', 'vietnamese','japanese']
+            radius:20
+
+            pos_hint:{'center_x':.2, 'center_y':.9}
+            color: '#7FC6CB'
+            font_name:'iCiel Brush Up.otf'
+            
+            font_size:'16sp'
+    
+            background_color:   '#FFFFFF'    
+
+        Spinner:
+            radius: 20
+            id:secondvalue_bdl
+            size_hint: .22,.05
+            text: "vietnamese"
+            values: ['english', 'vietnamese','japanese']
+            
+            pos_hint:{'center_x':.6, 'center_y':.9}
+            color: '#7FC6CB'
+            font_name:'iCiel Brush Up.otf'
+            font_size:'16sp'
+            
+    
+            background_color: '#FFFFFF'
+
+        MDIconButton:
+            id:Change
+            icon:'arrow-left-right-bold'
+            pos_hint:{'center_x':.4, 'center_y':.9}
+        
+        MDRectangleFlatButton:
+            id:Button
+            text:'Translate'
+            font_name:'iCiel Alina.otf'
+            background_color:'#6AC1DD'
+            pos_hint:{'center_x':.18,'center_y':.43}
+            font_size:'22sp'
+            size_hint:.11,.08
+            
+            #on_press: root.input_data_2()
+    
+            
+    
+            
+            text_color:'#0C0C0C'
+
+            
+        MDRectangleFlatButton:
+            id:Button_2
+
+            text:'Body Language'
+            font_name:'FingerSpeller W90 RightHand.ttf'
+            pos_hint:{'center_x':.77, 'center_y':.43}
+            font_size: '10sp'
+            text_color:'#0C0C0C'
+            size_hint:.34,.08
+            #on_press: root.bodylanguage_call_2()
+        
+        MDRectangleFlatButton:
+            id: Button_3
+
+            text:'Clear'
+            font_name:'iCiel Alina.otf'
+            background_color:'#6AC1DD'
+            pos_hint:{'center_x':.45,'center_y':.43}
+            font_size:'22sp'
+            size_hint:.08,.08
+            text_color:'#0C0C0C'
+        MDIconButton:
+            id: Audio
+            icon:'account-tie-voice'
+            pos_hint:{'center_x':.8, 'center_y':.9}
+
+        MDIconButton:
+            id: Picture
+            icon:'image-frame'
+            pos_hint:{'center_x':.88, 'center_y':.9}
+        
+<Character@BoxLayout>:
+    
+        
+    orientation:'vertical'
+    size_hint_y: None
+    height:'500dp'
+    radius: 30
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.4}
+            
+        size_hint_x: .92
+        size_hint_y: 1
+        
+
+        ScrollView:
+            size: self.size
+
+            GridLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                width: self.minimum_width
+                cols:1
+                spacing:'20dp'
+                padding: '20dp'
+                MDCard:
+                    id: human
+                    orientation:'vertical'
+                    padding:'8dp'
+                    size_hint: 1, None
+                    height:'400dp'
+                    elevation: 5 
+                    radius: 15
+                    border_radius: 20
+                    ripple_behavior: True
+                    
+                    
+                    FitImage:
+                        source:"human.png"
+                       
+                        allow_stretch: True
+                        anim_delay: 0.05
+                        mipmap: True
+                        allow_stretch: True 
+                    
+                  
+                MDCard:
+                    id: vivian
+                    orientation:'vertical'
+                    padding:'8dp'
+                    size_hint: 1, None
+                    height:'400dp'
+                    elevation: 5 
+                    radius: 15
+                    border_radius: 20
+                    ripple_behavior: True
+                 
+                    FitImage:
+                        source:'vivian.png'
+                        
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                   

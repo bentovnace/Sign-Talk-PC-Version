@@ -1,0 +1,239 @@
+<Command>:
+    size_hint_y: None
+    pos_hint: {'right':.98}
+    height: self.texture_size[1]
+    padding: 12, 10
+    theme_text_color: 'Custom'
+    text_color: 1 , 1, 1 ,1
+    
+    canvas.before:
+        Color:
+            rgb:(1, 170/255, 23/255, 1  )
+        RoundedRectangle:
+            size:self.size
+            pos: self.pos
+            radius: [23,23,0,23]
+<Response>:
+
+    size_hint_y: None
+    pos_hint: {'x':.02}
+    height: self.texture_size[1]
+    padding: 12, 10
+    theme_text_color: 'Custom'
+    
+    
+    canvas.before:
+        Color:
+            rgb:(1,1,1,1 )
+        RoundedRectangle:
+            size:self.width, self.height 
+            pos: self.pos
+            radius: [23,23,23,0]
+<ResponseImage>:
+    size_hint_x:.7
+    size_hint_y: None
+    height: 200
+    allow_stretch: True
+    pos_hint:{'x':.02}
+    canvas.before:
+        Color:
+            rgb: (1,1,1,1)
+        RoundedRectangle:
+            size: self.width, self.height
+            pos: self.pos
+            radius: [23, 23, 23 ,0]
+
+
+
+
+
+
+
+
+
+
+<ChatbotScreen>: 
+    ScreenManager:
+        id: chat_main_scr
+        Screen:
+            id:chatbotmain
+            name:'chatbot_main'
+            FitImage:
+                source:'Background for ChatBot.png'
+
+            MDTextFieldRound:
+                id: text_name
+                hint_text: "Your Name"
+                size_hint:.65,.05
+                max_text_length: 15
+                helper_text: "max"  
+                pos_hint:{'center_x':.5,'center_y':.2}
+                cursor_color: '#FEDD48'
+                hint_text_color:'#5A0000'
+                font_size:'28sp'
+                font_name:'iCiel Alina.otf'
+                foreground_color:'#5A0000'
+                halign:'center'
+            MDFillRoundFlatButton:
+
+                text:'Play'
+                halign:'center'
+                pos_hint:{'center_x':.5,'center_y':.1}
+                md_bg_color: '#FF9700'
+                size_hint:.35,.05
+                font_name:'Jaime Blues.ttf'
+                font_size:'24sp'
+                on_press: root.start_scr_chat()
+                
+        Screen: 
+            id: disconnect
+            name: 'disconnect_network'
+            FitImage: 
+                source:'Disconnect.png'
+            MDRectangleFlatButton:
+                halign: 'center'
+                text: 'Reload'
+                pos_hint:{'center_x':.5,'center_y':.1}
+                on_release: root.reload_check()
+        Screen:
+            id:startchat
+            name:'start_chat'
+            MDFloatLayout:
+                
+                FitImage:
+                    source:'Background for App.png'
+                MDFloatLayout:
+                    
+                    md_bg_color: 245/255, 245/255 ,245/255, 1
+
+                    size_hint_y:.11
+                    pos_hint:{'center_y':.95}
+                    MDLabel:
+                        id:bot_name
+                        text:'EBOT AI'
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        halign:'center'
+                        
+                        font_size:'36sp'
+                        font_name:'iCiel Koni Black.ttf'
+                        theme_text_color:'Custom'
+                        text_color: '#40207A'
+                    
+                        
+
+                ScrollView:
+                    size_hint_y:.77
+                    pos_hint:{'x':0,'y':.116}
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    BoxLayout:
+                        id: chat_list
+                        orientation:'vertical'
+                        size:(root.width, root.height)
+                        height: self.minimum_height
+                        size_hint:None, None
+                        pos_hint:{'top':10}
+                        cols:1
+                        spacing:5 
+                MDFloatLayout:
+                    radius: [20,20,0,0]
+                    md_bg_color: 245/255, 245/255 ,245/255, 1
+
+                    size_hint_y:.11
+                    pos_hint:{'center_y':.05}
+                    canvas:
+                        Color:
+                            rgb: (238/255,238/255,238/255,1)
+
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [23, 23, 23, 23]
+                    MDFillRoundFlatButton:
+
+                        text:'Type your message'
+                        halign:'center'
+                        
+                        pos_hint:{'center_x':.43,'center_y':.5}
+                        md_bg_color: '#FEDD48'
+                        size_hint:.72,.5
+                      
+                        font_size:'28sp'
+                        on_press: root.play_text()
+                        
+                        theme_text_color: "Custom"
+                        text_color:'#F23854'
+                        font_name:'SVN-Gumley.otf'
+                    MDIconButton:
+                        icon:"send"
+                        pos_hint:{'center_x':.91,'center_y':.5}
+                        user_font_size:"18sp"
+                        theme_text_color:'Custom'
+                        text_color: 1,1,1,1
+                        md_bg_color: 1, 170/255, 23/255,1   
+                        
+                        on_press: root.send()
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.chat_back()
+                pos: 20,1250
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80  
+            Spinner:
+		        radius: 20
+		        id: secondvalue
+		        size_hint: .22,.05
+		        text: "vietnamese"
+		        values: ['english', 'vietnamese']
+		        
+		        pos_hint:{'center_x':.85, 'center_y':.94}
+		        color: '#7FC6CB'
+		        font_name:'iCiel Brush Up.otf'
+		        font_size:'16sp'
+            MDSwitch:
+                pos_hint:{'center_x':.28, 'center_y':.94}
+                width: dp(45)
+
+                on_active: root.speak()
+            Image:
+                source:'speakaudio.png'
+                pos_hint:{'center_x':.18, 'center_y':.94}
+                size_hint_x:.1
+                size_hint_y:.1
+<CustomBottomSheet_bot@BoxLayout>:
+    orientation:'vertical'
+    size_hint_y: None
+    height:'350dp'
+    radius: 30
+    input_message: input_message
+    MDFloatLayout:
+        orientation:'vertical'  
+        MDTextFieldRound:
+            id:input_message
+            hint_text: "Message"
+            max_text_length: 15
+            helper_text: "max"  
+            size_hint_x:.6
+            size_hint_y:.1
+            cursor_color: '#C9C9C9'
+            multiline: True
+            hint_text_color:'#F23854'
+       
+            font_size:'30sp'                
+            foreground_color:'#F23854'
+            pos_hint: {'center_x': 0.43,'top': .95}
+            font_name:'SVN-Gumley.otf'
+            
+                    
+        MDIconButton:
+            id: send_button
+            icon:"send"
+            pos_hint:{'center_x':.86,'top':.95}
+            user_font_size:"18sp"
+            theme_text_color:'Custom'
+            text_color: 1,1,1,1
+            md_bg_color: 1, 170/255, 23/255,1   

@@ -1,0 +1,164 @@
+<ProfileScreen>:
+    FitImage:
+        source:'Background for AppPro F.png'
+    
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.28}
+        size_hint_x: 1
+        size_hint_y: .65
+        
+        MDCard:
+            radius: 30
+            
+            y:'-300dp'
+            
+            elevation: 10
+
+    
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.6}
+        size_hint_x: .8
+        size_hint_y: .25
+        
+        MDCard:
+            radius: 20
+            
+            y:'-300dp'
+            
+            elevation: 40
+            MDLabel:
+                text:'Trần Đăng Khoa'
+                font_size:'32sp'
+                font_name:'LesFruits.ttf'
+                halign:'center'
+    MDLabel:
+        text:" Everything has beauty, but not everyone sees it."
+        font_size:'13sp'
+        font_name:'Butcherandblock.otf'
+        halign:'center'
+        pos_hint: {'center_x': 0.5,'center_y': 0.55}
+    MDBoxLayout:
+        size_hint_x:.270
+        size_hint_y:.140
+        pos_hint: {'center_x': 0.5,'center_y': 0.73}
+        
+        canvas:
+            Color:
+                rgb: (1,1,1,1)
+            Ellipse:
+                size: self.size
+                pos: self.pos
+                source:'gradient.jpg'
+            
+    MDBoxLayout:
+        size_hint_x:.250
+        size_hint_y:.140
+        pos_hint: {'center_x': 0.5,'center_y': 0.73}
+        
+        canvas:
+            Color:
+                rgb: (1,1,1,1)
+            Ellipse:
+                size: self.size
+                pos: self.pos
+                source:'Avata.png'
+        
+        
+    
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.3}
+        size_hint_x: .8
+        size_hint_y: .20
+        
+        MDCard:
+            radius: 20
+            
+            y:'-300dp'
+            
+            elevation: 30
+            
+
+    MDBoxLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.1}
+        size_hint_x: .8
+        size_hint_y: .15
+        
+        MDCard:
+            radius: 20
+            
+            y:'-300dp'
+            
+            elevation: 30
+            MDLabel:
+                text:"THPT Mạc Đĩnh Chi"
+                halign:'center'
+                font_name:'Cucho.otf'
+                font_size:'32sp'
+
+    MDLabel:
+        text:'Âm Nhạc'
+        halign:'center'
+
+        pos_hint: {'center_x': 0.3,'center_y': 0.33} 
+
+
+    MDSwitch:
+        pos_hint: {'center_x': 0.62,'center_y': 0.33} 
+        width: dp(45)
+        on_active: root.music()
+
+    MDLabel:
+        text:'Thông báo'
+        halign:'center'
+
+        pos_hint: {'center_x': 0.3,'center_y': 0.26} 
+
+
+    MDSwitch:
+        pos_hint: {'center_x': 0.62,'center_y': 0.26} 
+        width: dp(45)
+        on_active: root.notify()
+
+        
+    MDRectangleFlatButton:
+        text: 'KEY'
+        halign:'center'
+        pos_hint:{'center_x':.5,'center_y':.05}
+        on_release:root.key()     
+        size_hint:.02,.02               
+
+             
+<CustomBottomSheet_key@BoxLayout>:
+    orientation:'vertical'
+    size_hint_y: None
+    height:'350dp'
+    radius: [30]
+    input_message_pro: input_message_pro
+    MDFloatLayout:
+        orientation:'vertical'  
+        TextInput:
+            id:input_message_pro
+            hint_text: "Type your message"
+            max_text_length: 15
+            helper_text: "max"  
+            size_hint_x:.6
+            size_hint_y:.1
+            cursor_color: '#C9C9C9'
+            multiline: True
+            hint_text_color:'#F23854'
+       
+            font_size:'30sp'                
+            foreground_color:'#F23854'
+            pos_hint: {'center_x': 0.43,'top': .95}
+            font_name:'SVN-Gumley.otf'
+            input_type: "text"
+            keyboard_suggestions: True
+                   
+        MDIconButton:
+            id: send_button_pro
+            icon:"send"
+            pos_hint:{'center_x':.9,'top':.97}
+            user_font_size:"14sp"
+            theme_text_color:'Custom'
+            text_color: 1,1,1,1
+            md_bg_color: 1, 170/255, 23/255,1   

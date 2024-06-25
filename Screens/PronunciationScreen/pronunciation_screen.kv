@@ -1,0 +1,324 @@
+<PronunciationScreen>:
+
+    ScreenManager:
+
+        id: speak_scr
+        Screen:
+            id: home_speak
+            name:"home_speak"
+            FitImage:
+                source:'Background for App speaking.png'
+
+            MDCard:
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                    
+                size_hint_x: .85
+                size_hint_y: .7 
+                radius: 20
+                ScrollView:
+                    size: self.size
+                    MDList:
+                        TwoLineIconListItem:
+                            text:'Animal'
+                            theme_text_color:'Custom'
+                            text_color: '#82EDFF'
+                            font_style: "Button"
+                            secondary_font_style:'Caption'
+                            bold: True
+                            on_press: root.change_speak_ques()
+                            on_release: root.Animal()
+
+
+                            secondary_text: 'Chủ đề về động vật'
+                            
+                            IconLeftWidget:
+                                Image:
+                                    source:'icons8-animal-64.png'
+                                    size_hint:  12,12
+
+                            
+                            
+
+                        TwoLineIconListItem:
+
+                            text:'Food'
+
+                            theme_text_color:'Custom'
+                            text_color: '#82EDFF'
+                            font_style: "Button"
+                            secondary_font_style:'Caption'
+                            bold: True
+                            on_press: root.change_speak_ques()
+                            on_release: root.Food()
+                            secondary_text:'Chủ đề về ẩm thực'
+                            IconLeftWidget:
+                                Image:
+                                    source:'icons8-pizza-five-eighths-48.png'
+                                    size_hint:  12,12
+                            
+                            
+
+                            
+
+
+                        TwoLineIconListItem:
+
+                            text:'Color'
+
+                            theme_text_color:'Custom'
+                            text_color: '#82EDFF'
+                            font_style: "Button"
+                            secondary_font_style:'Caption'
+                            bold: True
+                            on_press: root.change_speak_ques()
+                            on_release: root.Color()
+                            secondary_text:'Chủ đề về màu sắc'
+
+                            IconLeftWidget:
+                                Image:
+                                    source:'icons8-art-61.png'
+                                    size_hint:  2,2
+                                    
+
+                            
+                            
+
+
+
+
+
+                        TwoLineIconListItem:
+
+                            text:'Weather'
+
+                            theme_text_color:'Custom'
+                            text_color: '#82EDFF'
+                            font_style: "Button"
+                            secondary_font_style:'Caption'
+                            bold: True
+                            on_press: root.change_speak_ques()
+                            on_release: root.Weather()
+
+                            secondary_text:'Chủ đề về thời tiết'
+                            IconLeftWidget:
+                                Image:
+                                    source:'icons8-night-64.png'
+                                    size_hint:  1.8,1.8
+
+
+                            
+
+
+
+                        TwoLineIconListItem:
+
+                            text:'Sport'
+
+                            theme_text_color:'Custom'
+                            text_color: '#82EDFF'
+                            font_style: "Button"
+                            secondary_font_style:'Caption'
+                            bold: True
+                            on_press: root.change_speak_ques()
+                            on_release: root.Sport()
+
+                            secondary_text:'Chủ đề về thể thao.'
+                            IconLeftWidget:
+                                Image:
+                                    source:'icons8-ping-pong-64.png'
+                                    size_hint:  2,2
+        Screen:
+
+            id: speak_ques
+            name: "speak_ques"
+          
+            FitImage:
+                source:'Background for App.png' 
+
+            Button:
+                size_hint:.2,.1
+                background_color: 0,0,0,0                
+                on_release: root.change_menu_speak_screen()
+                pos: 20,1250
+                size: 80,80 
+                Image:
+                    
+                    source:'icons8-back-arrow-65.png'
+                    pos: 20,1250
+                    size: 80,80  
+                
+
+            MDLabel:
+                id: per_cent_speak
+
+                text:'0%'
+                pos_hint:{'center_x':1.37,'center_y':.92}
+                font_name:"iCiel Alina.otf"
+                font_size:"32sp"
+                theme_text_color: "Custom"
+                text_color:"#01DFF0"
+
+            MDProgressBar:
+                id:progress_bar_speak
+                value: 0
+                pos_hint:{'center_x':.5,'center_y':.92}
+                size_hint_x: .7
+                size_hint_y:3
+                radius:[20,20,20,20]
+            
+
+
+
+
+            MDBoxLayout:
+                pos_hint: {'center_x': 0.5,'center_y': 0.7}
+                size_hint_x: .9
+                size_hint_y: .35
+                
+                MDCard:
+                    radius: 20
+                    orientation: 'vertical'
+                    y:'20dp'
+                    elevation:10
+                  
+
+
+            MDBoxLayout:
+               
+                size_hint_x: .5
+                size_hint_y: .15
+                pos_hint: {'center_x': 0.5,'center_y': 0.77}
+                Image:
+                    id: ques_image
+                    source:"cat.jpg"
+
+
+
+                    
+        
+            MDLabel:
+                id: ques_speak
+                text:'Question 1'
+                font_size:'32sp'
+                halign:'center'
+                font_name:'iCielBCDowntown-Regular.otf'
+
+
+                pos_hint:{'center_x': 0.5,'center_y': 0.67}
+
+     
+            MDLabel:
+                id: meaning
+                text:'Động vật'
+                font_size:'24sp'
+                halign:'center'
+                font_name:'Blooming Elegant Hand1.otf'
+
+
+                pos_hint:{'center_x': 0.5,'center_y': 0.63}
+            MDLabel:
+                id:pronun
+                pos_hint:{'center_x': 0.5,'center_y': 0.5}
+            Button:
+                
+                id: rec_button
+                ripple_behavior: True
+               
+                background_color: 0,0,0,0
+                size_hint:.2,.1
+                pos: 300,140
+                size: 120,120
+                on_release: root.record_audio()
+                
+                Image:
+                    id: record_mic_pro
+                    source:'icons8-mic-65.png'
+                    pos: 300,140
+                    size: 120,120
+
+
+            Button:
+                
+                id: Audio_button
+                ripple_behavior: True
+               
+                background_color: 0,0,0,0
+                size_hint:.15,.1
+                pos: 325, 730
+                size: 60,60
+                on_press: root.play_audio_pro()
+                
+                Image:
+                    id: record_mic
+                    source:'Pro Au.png'
+                    pos: 325, 730
+                    size: 60,60
+            MDLabel:
+                id: result
+
+                text:'result'
+                halign:'center'
+                font_size:'36sp'
+                pos_hint:{"center_x":.5,"center_y":.3}
+                theme_text_color:"Custom"
+                text_color:"#08C3F4"
+                font_name:"Cucho.otf"
+            MDLabel:   
+                id: pronun
+                text:'hello'
+                halign:'center'
+                pos_hint:{'center_x':.5,'center_y':.6}
+
+
+
+        Screen:
+            id: "pro_final"
+            name:"profinal"
+            FitImage:
+                source:'Background for end game.png'
+            
+
+            MDFillRoundFlatButton:
+                text:'Come Back'
+                halign: 'center'
+                pos_hint:{'center_x':.5, 'center_y':.15}
+
+                font_name:"iCiel Alina.otf"
+                font_size:'24sp'
+                on_press: root.change_menu_speak_screen()
+
+
+
+
+
+            
+<CustomBottomSheet_pro_02@BoxLayout>:
+    
+        
+    orientation:'vertical'
+    size_hint_y: None
+    height:'150dp'
+    radius: [30,30,0,0]
+    elevation:10
+   
+    MDFloatLayout:
+        orientation:'vertical'
+        FitImage:
+            source:'pro image.jpg'
+
+       
+    
+
+        MDFillRoundFlatButton:
+            id:continue_button
+            text:'Tiếp tục nào !'
+            halign: 'center'
+            pos_hint:{'center_x':.5, 'center_y':.5}
+
+            font_name:"iCiel Alina.otf"
+            font_size:'30sp'
+          
+
+            radius:[23,23,23,23]
+            
+            
